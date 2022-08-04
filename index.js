@@ -179,7 +179,6 @@ function checkMinMetascores(movies,metascore) {
   return hasTheMin
 }
 
-console.log(checkMinMetascores(exampleMovies,90))
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -193,20 +192,31 @@ console.log(checkMinMetascores(exampleMovies,90))
  * EXAMPLE:
  *  getRottenTomatoesScoreByMovie(movies);
  *  //> [
-      { "Toy Story 4": "97%" },
-      { "Inside Out": "98%" },
-      { Coco: "97%" },
-      { "Incredibles 2": "93%" },
-      { Moana: "95%" },
-      { "How to Train Your Dragon": "99%" },
-      { Paddington: "97%" },
-      { "The Lion King": "93%" },
-      { Fantasia: "95%" },
-      { "James and the Giant Peach": "91%" },
-    ];
- */
-function getRottenTomatoesScoreByMovie() {}
+ { "Toy Story 4": "97%" },
+ { "Inside Out": "98%" },
+ { Coco: "97%" },
+ { "Incredibles 2": "93%" },
+ { Moana: "95%" },
+ { "How to Train Your Dragon": "99%" },
+ { Paddington: "97%" },
+ { "The Lion King": "93%" },
+ { Fantasia: "95%" },
+ { "James and the Giant Peach": "91%" },
+];
+*/
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+let obj = movies.map((movie) => 
+  {if(movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")) console.log({value})
+  return obj
+}
+)
+  
+}
 
+console.log(getRottenTomatoesScoreByMovie(exampleMovies))
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
