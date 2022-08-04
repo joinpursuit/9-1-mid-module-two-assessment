@@ -120,7 +120,12 @@ function filterByGenre(movies, genre) {
     throw "No movies found."
   }
 
-  movies.filter(({genre}) => movies.genre.toLowerCase() === genre.includes.toLowerCase())
+  const movieGenres = movies.filter((movie) => {
+    if(movie.genre.includes(genre)){
+      return movie.title
+    }
+  })
+  return movieGenres
 }
 
 /**
