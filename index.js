@@ -78,8 +78,6 @@ function findById(movies, id) {
   !movies.length ? _throw("No Movies Detected") : null
   let ID = movies.find(movie => movie.imdbID === id)
   return (!ID) ? null : ID
-  //return array based on objects 
-  //if not Av null
 }
 
 /**
