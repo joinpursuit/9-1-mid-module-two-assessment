@@ -198,11 +198,11 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-  // if(!movies.length){
-  //   throw "Must be atleast one movie"
-  // }
+  if(!movies.length){
+    throw "Must be atleast one movie"
+  }
   //have to itterate over the ratings key
-  // return movies.map((movie) => {[movie.title = movies.ratings.find()]})
+  return movies.map((movie) => {movie.title = movies.ratings.find()})
 }
 
 // Do not change anything below this line.
