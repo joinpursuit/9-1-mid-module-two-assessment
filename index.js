@@ -199,8 +199,7 @@ function getRottenTomatoesScoreByMovie(movies) {
   }
   return movies.map((a) => {
     const useFind = a.ratings.find((s) => s.source === "Rotten Tomatoes");
-    return { [a.title]: useFind.s.value };
-    console.log({ [a.title]: useFind.s.value });
+    return { [a.title]: useFind.value };
   });
 }
 
