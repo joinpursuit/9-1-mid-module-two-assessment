@@ -30,7 +30,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+if(!movies.length) throw "Error: Movies array is empty!"
+
+const movieNames = movies.map((movie) => movie.title)
+return movieNames
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +55,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  const hasRating = movies.some((movie) => movie.rated === rating)
+  return hasRating
+}
 
 /**
  * findById()
@@ -68,7 +78,13 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  const findWithId = movies.find((movie) => movie.imdbID === id)
+  if(!findWithId) return null
+  return findWithId
+}
 
 /**
  * filterByGenre()
@@ -92,7 +108,15 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  const matchesGenre = movies.filter((movie) => 
+    movie.genre.toLowerCase().includes(genre.toLowerCase())) 
+  
+  
+  return matchesGenre
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +142,15 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  const atOrBeforeYear = movies.filter((movie) => {
+    let yearReleased= movie.released.split(" ")
+    if(yearReleased[2] <= year) return movie
+  })
+return atOrBeforeYear
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +166,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore = 60) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  const hasMinMeta =movies.every((movie) => Number(movie.metascore) >= metascore)
+  return hasMinMeta
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
