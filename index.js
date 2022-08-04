@@ -82,7 +82,7 @@ function findById(movies, id) {
   if (!movies.length) {
     throw `Error: There are no movies.`;
   }
-  let val = movies.find((movie) => movie.imdbID === id);
+  let val = movies.find(({ imdbID }) => imdbID === id);
   if (!val) {
     return null;
   }
@@ -144,7 +144,12 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {
+    throw `Error: There are no movies.`;
+  }
+  return movies.filter(({ released }) => Number(released.split(` `)[2]) <= year);
+}
 
 /**
  * checkMinMetascores()
