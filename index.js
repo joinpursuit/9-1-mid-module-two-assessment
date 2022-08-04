@@ -87,7 +87,7 @@ function findById(movies, id) {
     throw console.error
   //throws error if 'movies' array is empty  
   }
-  return movies.find(movie => movie.imdbID === id ? true : null)
+  return movies.find((movie) => movie.imdbID === id) || null
 }
 
 /**
@@ -113,13 +113,14 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-//   if(!movies.length){
-//     throw console.error
-//   //throws error if 'movies' array is empty 
-//   }
-//   let arr = []
-//    arr = movies.filter((movie) =>{return movie.type.find(movieType) => movieType.type.name.toLowercase() === genre.toLowerCase()})
-//    return arr
+  if(!movies.length){
+    throw console.error
+  //throws error if 'movies' array is empty 
+  }
+  let arr = []
+   arr = movies.filter((movie) => {
+    return  movie.genre.toLowerCase().includes(genre.toLowerCase())})
+   return arr
 }
 
 /**
@@ -166,7 +167,7 @@ function checkMinMetascores(movies, metascore) {
   if(!movies.length){
     throw console.error
   }
-  return movies.every(movie => movie.metascore > 90 || movie.metascore > 60)
+  return movies.every(movie =>  movie.metascore  >= metascore)
 }
 
 /**
@@ -193,7 +194,19 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movie.map((score) => {
+    let val = [key]
+    score.ratings.find((inner) => {
+      val = inner.type.value
+      return val
+    })
+    return {[inner.value]: val}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
