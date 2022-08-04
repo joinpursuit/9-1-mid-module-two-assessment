@@ -59,7 +59,18 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  let ifAnyRating = false
+  let isAnyRating = null
+  if (movies.length === 0){
+    throw 'movies object is empty!'
+  }
+  ifAnyRating = movies.some(movie => {
+    return movie.rated === rating
+  })
+  
+  return ifAnyRating
+}
 
 /**
  * findById()
