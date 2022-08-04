@@ -53,7 +53,10 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  !movies.length ? _throw("No Movies Detected") : null
+  return movies.some(movie => movie.rated === rating)
+}
 
 /**
  * findById()
