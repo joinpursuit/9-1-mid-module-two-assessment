@@ -115,7 +115,9 @@ function filterByGenre(movies, genre) {
   // if(!movies.length){
   //   throw "Must be atleast one movie"
   // }
-  // return movies.filter((movie) => {movie.genre === genre})
+  // //How to make code Case-insensitive?
+  //   //find a method to account for that
+  // return movies.filter(movie => {return movie.genre.includes(genre)})
 }
 
 /**
@@ -142,7 +144,12 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(movies.length === 0){
+    throw console.error()
+  }
+  // return movies.filter(movie =>  movie.released.slice(7,11) <= year)
+}
 
 /**
  * checkMinMetascores()
@@ -158,7 +165,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+ if(movies.length < 1){
+  throw console.error()
+ }
+ //why doesnt it return true
+  // return movies.every(movie => {movie.metascore <= metascore})
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -184,7 +197,13 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // if(!movies.length){
+  //   throw "Must be atleast one movie"
+  // }
+  //have to itterate over the ratings key
+  // return movies.map((movie) => {[movie.title = movies.ratings.find()]})
+}
 
 // Do not change anything below this line.
 module.exports = {
