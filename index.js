@@ -111,16 +111,11 @@ function filterByGenre(movies, genre) {
   if (!movies.length) {
     throw "Error";
   }
-  const filteredGenre = movies.filter((a) => {
-    a.title.toLowerCase() === movies.toLowerCase() &&
-      a.genre.toLowerCase() === genre.toLowerCase();
-    return movies;
-  });
-  if (a.genre === genre) {
-    return [];
-  }
-  return filterByGenre;
+  return movies.filter((a) =>
+    a.genre.toLowerCase().includes(genre.toLowerCase())
+  );
 }
+// console.log(filterByGenre(movies, "Mystery"));
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -150,7 +145,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw "Error";
   }
-  return movies.filter(({ released }) => Number(released.slice(6, 10) <= year));
+  return movies.filter(({ released }) => Number(released.slice(7, 12) <= year));
 }
 
 /**
@@ -198,7 +193,16 @@ function checkMinMetascores(movies, score = "60") {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw "Error";
+  }
+  return movies.map((a) => {
+    const useFind = a.ratings.find((s) => s.source === "Rotten Tomatoes");
+    return { [a.title]: useFind.s.value };
+    console.log({ [a.title]: useFind.s.value });
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
