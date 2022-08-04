@@ -105,8 +105,16 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   !movies.length ? _throw("No Movies Detected") : null
+  return movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
+
+  /* 
+  WHY DOESN'T IT WORK WITH DRY CODE? 
+
+  !movies.length ? _throw("No Movies Detected") : null
   let genres = genre.toUpperCase()
   return movies.filter(movie => movie.genres.includes(genres))
+  */
+
 }
 
 /**
@@ -133,7 +141,9 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+ 
+}
 
 /**
  * checkMinMetascores()
