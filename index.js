@@ -57,7 +57,12 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating ="G") {
+  if (!movies.length) {
+    throw `Error no movie `
+  }
+  return movies.some(({rated})=> rated ===rating)
+}
 
 /**
  * findById()
@@ -75,7 +80,16 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length ) {
+    throw `Error no movie found`
+  }
+   return movies.find((movie)=>{ 
+      if(movie.imdbID === id){
+      return movie
+      }
+  })|| null
+}
 
 /**
  * filterByGenre()
@@ -99,7 +113,14 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies,genre) {
+  if (!movies.length) {
+    throw `Error no movie information`
+  }
+  const genrefilter =  movies.filter((movie)=> {
+    
+  })
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -125,7 +146,18 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if (!movies.length) {
+    throw` Error`
+  }
+  const movieYrRelease = movies.filter((movie)=>{
+    const yrRel = Number(movie.released.split(` `)[2]) 
+       if (year >= yrRel) {
+         return movie
+       }
+    })
+  return movieYrRelease
+}
 
 /**
  * checkMinMetascores()
@@ -141,7 +173,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+if (!movies.length) {
+  throw `Error`
+}
+ return movies.every(movie=> movie.metascore >= metascore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
