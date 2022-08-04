@@ -119,6 +119,14 @@ return getId
  */
 function filterByGenre(movies, genre) {
   if (movies.length < 1) throw `Error: No movies found`;
+
+  const theGenre = movies.filter((mov)=>{
+    let moVie = mov.genre.toLowerCase
+    if(moVie.genre === genre.toLowerCase()){
+      return moVie
+    }
+  })
+return theGenre
 }
 
 /**
@@ -145,7 +153,17 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length === 0) throw `Error: No movies found`;
+
+  const relYear = movies.filter((mov)=>{
+    let theYear = mov.released.slice(-4)
+    if(theYear <= year){
+      return theYear
+    }
+  })
+  return relYear
+}
 
 /**
  * checkMinMetascores()
