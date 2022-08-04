@@ -170,7 +170,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, mscore) {
-  //metascore: "94" -> urnary + -> minimum (at least)
+  //metascore: "94" -> urnary + -> minimum (at least) >=
   
   if(!movies.length) throw `Inputted array should have at least one element`
   return movies.every(({metascore}) => +metascore >= mscore)
@@ -200,7 +200,33 @@ function checkMinMetascores(movies, mscore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // key = title, [title]
+  //value = rotten tomatoes -> .ratings array -> obj .source === `ROTTEN TOMATOES` -> .value KEY
+  /* 
+   ratings: [
+      {
+        source: "Internet Movie Database",
+        value: "7.7/10",
+      },
+      {
+        source: "Rotten Tomatoes",
+        value: "97%",
+      },
+      {
+        source: "Metacritic",
+        value: "84/100",
+      },
+    ],
+  */
+
+    if(!movies.length) throw `Inputted array should have at least one element`
+
+    return movies.map(({title, ratings}) => {
+      let rate = ratings.find((obj) => obj.source === `Rotten Tomatoes`)
+       return {[title]: rate.value }})
+
+}
 
 // Do not change anything below this line.
 module.exports = {
