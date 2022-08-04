@@ -536,12 +536,14 @@ function filterByGenre(movies, genre) {
     throw "no movies"
   } else{
   
-   return( array = movies.filter((list,i)=> {
-     return list.genre.toLowerCase() === genre.toLowerCase()
+  return (array = movies.filter((list)=> {
+     return list.genre.toLowerCase().includes(genre.toLowerCase())
    } )
-   )
+  )
   }
 }
+ 
+  
 filterByGenre(movies, "Mystery")
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -625,7 +627,22 @@ function checkMinMetascores(movies,metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw "no movies"
+  }
+  
+  return movies.map((title)=> {
+      let value = ""
+      title.ratings.find((rates)=> {
+        if(rates.source === 'Rotten Tomatoes') {
+          return value = rates.value
+        }
+      } )
+      return {[title.title]: value}
+    })
+      
+}
 
 // Do not change anything below this line.
 module.exports = {
