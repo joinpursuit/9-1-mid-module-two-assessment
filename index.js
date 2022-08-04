@@ -135,9 +135,6 @@ function filterByGenre(movies, genre) {
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   !movies.length ? _throw("No Movies Detected") : null
   return movies.filter(movie => parseInt(movie.released.split(" ")[2]) <= year)
-  /*
-  Reminder: Used ParsInt to make comparative string a number to be compared to
-  */
 }
 
 /**
