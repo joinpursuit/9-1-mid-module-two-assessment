@@ -117,12 +117,7 @@ function filterByGenre(movies,genre) {
   if (!movies.length) {
     throw `Error no movie information`
   }
-  return movies.filter((movie)=>{
-     let moviegen = movie.genre.toUpperCase()
-    if (moviegen.includes(genre.toUpperCase())) {
-      return movie
-    }
-  })
+  return movies.filter((movie)=> movie.genre.toUpperCase().includes(genre.toUpperCase()))
 }
 
 /**
