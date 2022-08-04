@@ -32,7 +32,7 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
  
   return movies.map(({title})=> title)
@@ -58,7 +58,7 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating="G") {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
 
   return movies.some(({rated})=> rated === rating ? true : false)
@@ -82,7 +82,7 @@ function checkIfAnyMovieHasRating(movies, rating="G") {
  */
 function findById(movies, id) {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
 
   return movies.find(({imdbID})=> imdbID === id) || null
@@ -112,7 +112,7 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre1) {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
 return movies.filter(({genre})=> genre.toLowerCase().includes(genre1.toLowerCase()))
 
@@ -144,7 +144,7 @@ return movies.filter(({genre})=> genre.toLowerCase().includes(genre1.toLowerCase
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
 
   return movies.filter(({released})=> released.split(' ').slice(-1)<= year)
@@ -167,7 +167,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  */
 function checkMinMetascores(movies, metascore1) {
   if(movies.length === 0){
-    throw console.log()
+    throw console.error()
   }
   return movies.every(({metascore})=> metascore > metascore1)
 }
@@ -196,7 +196,16 @@ function checkMinMetascores(movies, metascore1) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw console.error()
+  }
+  return movies.map((i) => {
+    const x = i.ratings.find((ii) => ii.source === "Rotten Tomatoes")
+    return {[i.title]: x.value}
+   })
+}
+
 
 // Do not change anything below this line.
 module.exports = {
