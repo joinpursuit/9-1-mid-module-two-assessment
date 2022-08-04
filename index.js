@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length === 0) throw `Error: No movies found`;
+
+  return movies.map((mov) => mov.title);
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,16 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating ="G") {
+  if (movies.length === 0) throw `Error: No movies found`;
+
+  const hasRatings = movies.some((mov)=>{
+    if(mov.rated === rating ){
+      return mov
+    }
+  })
+return hasRatings
+}
 
 /**
  * findById()
@@ -68,7 +81,19 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length < 1) throw `Error: No movies found`;
+
+  const getId =  movies.find((mov)=>{
+    if(mov.imdbID === id){
+      return mov
+    }
+  })
+if(!getId){
+  return null
+}
+return getId
+}
 
 /**
  * filterByGenre()
@@ -92,7 +117,9 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length < 1) throw `Error: No movies found`;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
