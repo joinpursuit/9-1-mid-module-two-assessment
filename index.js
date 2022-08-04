@@ -30,7 +30,16 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+
+  movieTitles = movies.map(({ title }) => {
+     return title
+  })
+  return movieTitles
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +59,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies) {
+if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 /**
  * findById()
@@ -68,7 +81,11 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 /**
  * filterByGenre()
@@ -92,7 +109,11 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +139,11 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +159,11 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +189,11 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {
+    throw `Error, no movies available!`
+  }
+}
 
 // Do not change anything below this line.
 module.exports = {
