@@ -61,6 +61,10 @@ function getAllMovieTitles(movies) {
 function checkIfAnyMovieHasRating(movies, rating) {
   if (!movies.length){
     throw console.error();
+  } else {
+    if(!rating){
+      rating = "G"
+    }
   }
   return movies.some( ({ rated }) => rated === rating)
 }
@@ -84,8 +88,16 @@ function checkIfAnyMovieHasRating(movies, rating) {
 function findById(movies, id) {
   if (!movies.length){
     throw console.error();
+  
+  } else{
+  let movieId = movies.find(({imdbID}) => imdbID === id)
+  if (movieId === undefined){
+    return null
+    
+    } else{
+      return movieId
+    }
   }
-  return movies.find(( {imdbID} ) => imdbID === id)
 }
 
 /**
@@ -170,8 +182,7 @@ function checkMinMetascores(movies, metascore) {
   if (!movies.length){
     throw console.error();
   }
-  const score = movies.every((movie) => movie.metascore >= 90);
-  return score
+   return movies.every((all) => Number(all.metascore)> metascore)
 }
 
 /**
