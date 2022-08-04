@@ -90,7 +90,6 @@ function findById(movies, id) {
   }
   
   return movies.find(({imdbID}) => id === imdbID)
-
 }
 
 /**
@@ -221,10 +220,12 @@ function getRottenTomatoesScoreByMovie(movies) {
   }
 
   return movies.map((movie) => {
-    let movie1 = undefined
-    movie.ratings.find((tomatoRating) => {
-      movie1 = tomatoRating.value
-      return movie1
+    let movie1 = ""
+    movie.ratings.find((eachRating) => {
+      if (eachRating.source === "Rotten Tomatoes"){
+        movie1 += eachRating.value
+        return movie1
+      }
     })
     return {[movie.title]: movie1}
   })
