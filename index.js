@@ -112,12 +112,12 @@ return movies.find(movie => movie.imdbID === id)
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  // if(!movies.length){
-  //   throw "Must be atleast one movie"
-  // }
-  // //How to make code Case-insensitive?
-  //   //find a method to account for that
-  // return movies.filter(movie => {return movie.genre.includes(genre)})
+  if(!movies.length){
+    throw "Must be atleast one movie"
+  }
+  //How to make code Case-insensitive?
+    //find a method to account for that
+  return movies.filter(movie => {return movie.genre.includes(genre)})
 }
 
 /**
