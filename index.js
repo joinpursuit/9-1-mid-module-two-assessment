@@ -59,15 +59,13 @@ return movies.map((movie)=> movie.title);
 function checkIfAnyMovieHasRating(movies, rating) {
   if(!movies.length) {
     throw "Error: movies array is empty"
-  }
- // let ratings = rating ? rating: "G"
   
-  return movies.some((movie)=>{
-
-     movie.rated === rating;
-  })
+ // let ratings = rating ? rating: "G"
+  }
+return movies.some((movie) => movie.rated === rating);
+  
+  
 }
-
 /**
  * findById()
  * -----------------------------
@@ -148,7 +146,16 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length){
+    throw "Error: movies array is empty"
+  }
+  return movies.filter((movie)=>{
+    
+  })
+}
+
+
 
 /**
  * checkMinMetascores()
@@ -164,7 +171,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(!movies.length){
+    throw "Error: movies array is empty"
+    
+  
+  return movies.every((movie)=> movie.metascore > metascore ? True : False)
+  
+  }
+  
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -190,7 +206,18 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw "Error: movies array is empty"
+}
+
+
+return movies.map((movie)=>{
+  return movies.find((movie)=>{
+    return movie.rating.source ==="Rotten Tomatoes" ? value:undefined
+  })
+})
+}
 
 // Do not change anything below this line.
 module.exports = {
