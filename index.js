@@ -182,7 +182,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 function checkMinMetascores(movies, metascore) {
   if (!movies.length) throw `Error: Must add at movies.`;
 
-  const min = movies.every((mov) => mov.metascore >= metascore);
+  const min = movies.every((mov) =>{
+    if(mov.metascore >= metascore){
+      return mov
+    }
+  } )
+  return min
 }
 
 /**
