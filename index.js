@@ -59,10 +59,20 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies) {
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+// console.log('rating', rating)
+
 if (movies.length === 0) {
     throw `Error, no movies available!`
-  }
+}
+  
+  const movieRatings = movies.some((movie) => {
+    if (movie.rated === rating) {
+      return true
+    }
+    return false
+  })
+ return movieRatings
 }
 
 /**
@@ -81,10 +91,17 @@ if (movies.length === 0) {
       // Toy Story 4
     };
  */
-function findById(movies) {
+function findById(movies, id) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
+  const findWithId = movies.find((movie) => {
+    if (movie.imdbID === id) {
+      return movie
+    }
+    return null
+  })
+  return findWithId
 }
 
 /**
@@ -109,10 +126,18 @@ function findById(movies) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies) {
+function filterByGenre(movies, genre) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
+  
+  const genreFilter = movies.filter((movie) => {
+    if (movie.genre.toLowerCase().includes(genre.toLowerCase())) {
+      return movie
+    } 
+    
+})
+return genreFilter
 }
 
 /**
@@ -139,10 +164,18 @@ function filterByGenre(movies) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies) {
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
+
+  const moviesYearReleased = movies.filter((movie) => {
+   
+    if (Number(movie.released.slice(7) <= year)) {
+    return movie
+    }
+  })
+  return moviesYearReleased
 }
 
 /**
@@ -159,11 +192,18 @@ function getAllMoviesReleasedAtOrBeforeYear(movies) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies) {
+function checkMinMetascores(movies, metascore) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
-}
+  const minMetaScore = movies.every((movie)=>{
+    if (movie.metascore >= metascore) {
+      return true
+    }
+    return false
+  })
+  return minMetaScore
+} 
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -193,6 +233,10 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
+  const rottenTomatoesScore = movies.map((movie) => {
+  
+})
+
 }
 
 // Do not change anything below this line.
