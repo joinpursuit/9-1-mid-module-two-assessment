@@ -169,7 +169,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, mscore) {
+  //metascore: "94" -> urnary + -> minimum (at least)
+  
+  if(!movies.length) throw `Inputted array should have at least one element`
+  return movies.every(({metascore}) => +metascore >= mscore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
