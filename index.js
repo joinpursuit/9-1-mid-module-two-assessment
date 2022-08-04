@@ -117,8 +117,11 @@ function filterByGenre(movies,genre) {
   if (!movies.length) {
     throw `Error no movie information`
   }
-  const genrefilter =  movies.filter((movie)=> {
-    
+  return movies.filter((movie)=>{
+     let moviegen = movie.genre.toUpperCase()
+    if (moviegen.includes(genre.toUpperCase())) {
+      return movie
+    }
   })
 }
 
@@ -204,7 +207,15 @@ if (!movies.length) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw`Error`
+  }
+  return movies.map((element)=>{
+    const valueScore = element.ratings.find((score)=> score.source ==="Rotten Tomatoes")
+    return {[element.title]: valueScore.value}
+  })
+  }
 
 // Do not change anything below this line.
 module.exports = {
