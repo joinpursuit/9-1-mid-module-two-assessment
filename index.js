@@ -121,6 +121,7 @@ function filterByGenre(movies, genre) {
    arr = movies.filter((movie) => {
     return  movie.genre.toLowerCase().includes(genre.toLowerCase())})
    return arr
+   
 }
 
 /**
@@ -147,7 +148,14 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movies.filter((movie) => 
+    Number(movie.released.split(" ")[2]) <= year
+  )
+}
 
 /**
  * checkMinMetascores()
@@ -198,13 +206,11 @@ function getRottenTomatoesScoreByMovie(movies) {
   if(!movies.length){
     throw console.error
   }
-  return movie.map((score) => {
-    let val = [key]
-    score.ratings.find((inner) => {
-      val = inner.type.value
-      return val
-    })
-    return {[inner.value]: val}
+  return movies.map((movie) => {
+    let val = movie.ratings.find((inner) => 
+       inner.source === "Rotten Tomatoes"
+    )
+    return {[movie.title]: val.value}
   })
 }
 
