@@ -1,7 +1,7 @@
 {
   "name": "mid-module-two-assessment",
   "version": "1.0.0",
-  "description": "",
+  "description": "This challenge is designed to assess the JavaScript skills you have gained so far.",
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand __tests__/*.test.js",
@@ -12,5 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "jest": "^27.5.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D-Stukes/PURSUIT_9-1-mid-module-two-assessment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/D-Stukes/PURSUIT_9-1-mid-module-two-assessment/issues"
+  },
+  "homepage": "https://github.com/D-Stukes/PURSUIT_9-1-mid-module-two-assessment#readme"
 }
