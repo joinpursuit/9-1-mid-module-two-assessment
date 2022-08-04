@@ -158,8 +158,8 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   }
 
   const movieYears = movies.filter((movie) => {
-    if (Number(movie.released.slice(6, 10)) <= year){
-      return movie.title
+    if (movie.released.slice(7, 11) <= year){
+      return movie
     }
   })
   return movieYears
@@ -186,11 +186,7 @@ function checkMinMetascores(movies, metascore) {
   }
   
   const minScores = movies.every(movie => {
-    if (movie.metascore >= 60){
-      return true
-    } else if (movie.metascore >= 90){
-      return false
-    }
+    return movie.metascore >= metascore
   })
   return minScores
 }
