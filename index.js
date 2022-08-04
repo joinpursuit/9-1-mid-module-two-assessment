@@ -109,10 +109,12 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
+
   if (movies.length === 0) {
     throw error
   }
-  return movies.filter((movie) => movie.genre === genre.toLowerCase()) || []
+  return movies.filter((movie) => (movie.genre.toLowerCase().includes(genre.toLowerCase())
+    ))
 }
 
 /**
@@ -143,7 +145,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   // if (movies.length === 0) {
   //   throw console.error()
   // }
- return movies.filter((release) => parseInt(release.released.slice(8,11)) >= year)
+  return movies.filter((release) => Number(release.released.slice(7)) <= year)
 }
 
 /**
