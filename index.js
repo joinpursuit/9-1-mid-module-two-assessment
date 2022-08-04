@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.map(({title}) => title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = `G`) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.some(({rated}) => rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +76,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+  // imdbID
+
+  return movies.find(({imdbID}) => imdbID === id) || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +105,19 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+ function filterByGenre(movies,g) {
+    // genre: "Animation, Adventure, Comedy, Family, Fantasy"
+    // turn genre string into array, split using `,`.
+    // case insensitive -> .toLowerCase()
+    // no match -> return []
+    if(!movies.length) throw `Inputted array should have at least one element`
+    
+  
+    return movies.filter(({genre}) => {
+      // console.log( genre.toLowerCase().replaceAll(` `, ``).split(`,`))
+     return genre.toLowerCase().replaceAll(` `, ``).split(`,`).includes(g.toLowerCase())}
+  ) 
+  }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
