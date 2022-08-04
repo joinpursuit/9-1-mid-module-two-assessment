@@ -99,9 +99,8 @@ function findById(movies, id) {
     if (movie.imdbID === id) {
       return movie
     }
-    return null
   })
-  return findWithId
+  return findWithId || null
 }
 
 /**
@@ -233,11 +232,23 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length === 0) {
     throw `Error, no movies available!`
   }
-  const rottenTomatoesScore = movies.map((movie) => {
-  
+  return movies.map((movie) => {
+    // console.log('movie.ratings', movie.ratings)
+    const rottenTomatoesRating = movie.ratings.find((rating) => {
+
+      // console.log('###', rating.source)
+      if (rating.source === 'Rotten Tomatoes'){
+        return rating
+      }
+    })
+    // console.log('*****', rottenTomatoesRating)
+    
+
+      // rating.source === 'Rotten Tomatoes')
+    return { [movie.title]:rottenTomatoesRating.value}
 })
 
-}
+ }
 
 // Do not change anything below this line.
 module.exports = {
