@@ -162,8 +162,9 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   beforeYearMovies = movies.filter(movie => {
-    return movie.released
+    return movie.released.split(' ')[2] <= year
   })
+  return beforeYearMovies
 }
 
 /**
@@ -191,7 +192,7 @@ function checkMinMetascores(movies, metascore) {
   return isMoviesScoreOverGivenMeta
 }
 
-/**
+/**w
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
  * Transform each movie, returning an array of objects where the key is the title of the movie and the value is the score received from Rotten Tomatoes. If there are no movies, throw an error with a message.
@@ -215,7 +216,18 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){
+    throw 'movies object is empty! D:'
+  }
+  let variable = movies.map(movie => {
+    let second = movie.ratings.find(el => {
+      return el.source === 'Rotten Tomatoes'
+    })
+    return {[movie.title]:second.value}
+  })
+  return variable
+}
 
 // Do not change anything below this line.
 module.exports = {
