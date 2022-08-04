@@ -33,8 +33,7 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   if(!movies.length){
     throw `Error: No Movies`
-  }
-  return movies.map(({title}) => title)
+  } return movies.map(({title}) => title)
 }
 
 /**
@@ -55,7 +54,11 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = `G`) {
+  if(!movies.length){
+    throw `Error: No movies`
+  } return movies.some(({rated}) => rated === rating)
+}
 
 /**
  * findById()
