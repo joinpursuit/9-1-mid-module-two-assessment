@@ -201,8 +201,9 @@ function getRottenTomatoesScoreByMovie(movies) {
   return movies.map((movie) => {
     let rotten = undefined
     movie.ratings.find((rating) => {
-      rating.source === `Rotten Tomatoes`
-      return rotten = rating.value
+      if(rating.source === `Rotten Tomatoes`){
+        return rotten = rating.value
+      }
     })
     return {[movie.title]: rotten}
   })
