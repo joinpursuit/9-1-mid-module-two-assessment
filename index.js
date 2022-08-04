@@ -54,15 +54,15 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rating ="G") {
+function checkIfAnyMovieHasRating(movies, rating = "G") {
   if (movies.length === 0) throw `Error: No movies found`;
 
-  const hasRatings = movies.some((mov)=>{
-    if(mov.rated === rating ){
-      return mov
+  const hasRatings = movies.some((mov) => {
+    if (mov.rated === rating) {
+      return mov;
     }
-  })
-return hasRatings
+  });
+  return hasRatings;
 }
 
 /**
@@ -84,15 +84,15 @@ return hasRatings
 function findById(movies, id) {
   if (movies.length < 1) throw `Error: No movies found`;
 
-  const getId =  movies.find((mov)=>{
-    if(mov.imdbID === id){
-      return mov
+  const getId = movies.find((mov) => {
+    if (mov.imdbID === id) {
+      return mov;
     }
-  })
-if(!getId){
-  return null
-}
-return getId
+  });
+  if (!getId) {
+    return null;
+  }
+  return getId;
 }
 
 /**
@@ -120,13 +120,13 @@ return getId
 function filterByGenre(movies, genre) {
   if (movies.length < 1) throw `Error: No movies found`;
 
-  const theGenre = movies.filter((mov)=>{
-    let moVie = mov.genre.toLowerCase
-    if(moVie.genre === genre.toLowerCase()){
-      return moVie
+  const theGenre = movies.filter((mov) => {
+    let moVie = mov.genre.toUpperCase();
+    if (moVie === genre) {
+      return moVie;
     }
-  })
-return theGenre
+  });
+  return theGenre;
 }
 
 /**
@@ -156,13 +156,13 @@ return theGenre
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (movies.length === 0) throw `Error: No movies found`;
 
-  const relYear = movies.filter((mov)=>{
-    let theYear = mov.released.slice(-4)
-    if(theYear <= year){
-      return theYear
+  const relYear = movies.filter((mov) => {
+    let theYear = mov.released.slice(-4);
+    if (theYear <= year) {
+      return theYear;
     }
-  })
-  return relYear
+  });
+  return relYear;
 }
 
 /**
@@ -180,9 +180,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
-  if(!movies.length) throw `Error: Must add at movies.`
+  if (!movies.length) throw `Error: Must add at movies.`;
 
-  const min = movies.every((mov)=> mov.metascore >= metascore)
+  const min = movies.every((mov) => mov.metascore >= metascore);
 }
 
 /**
@@ -209,7 +209,17 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(movies.length === 0){
+    throw `Error: Please add a few movies to compare.`
+  }
+  return movies.map((mov)=>{
+   const rate = mov.ratings.find((val)=>{
+    return val.source === "Rotten Tomatoes";
+   })
+   return {[mov.title]: rate.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
