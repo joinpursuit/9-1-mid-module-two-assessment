@@ -56,7 +56,7 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies, rating = 'G') {
+function checkIfAnyMovieHasRating(movies, rating="G") {
   if (!movies.length){
     throw "No movies found."
   }
@@ -65,7 +65,7 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
     return rating
   }
 
-  return movies.some(({rating}) => rating === rating)
+  return movies.some(({rated}) => rated === rating)
 }
 
 /**
@@ -88,7 +88,7 @@ function findById(movies, id) {
   if (!movies.length){
     throw "No movies found."
   }
-  
+
   return movies.find(({imdbID}) => id === imdbID)
 }
 
