@@ -120,14 +120,14 @@ function findById(movies, id) {
 function filterByGenre(movies, genre) {
   if (movies.length < 1) throw `Error: No movies found`;
 
-  const theGenre = movies.filter((mov) => {
-    let moVie = mov.genre.toUpperCase();
-    if (moVie === genre) {
-      return moVie;
-    }
-  });
-  return theGenre;
-}
+    return movies.filter((movie) =>movie.genre.toUpperCase().split(`, `).includes(genre.toUpperCase()))
+
+    
+    
+
+  }
+  
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
