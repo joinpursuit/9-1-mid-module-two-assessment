@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -102,7 +103,11 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  !movies.length ? _throw("No Movies Detected") : null
+  let genres = genre.toUpperCase()
+  return movies.filter(movie => movie.genres.includes(genres))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
