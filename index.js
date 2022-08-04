@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.map(({title}) => title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = `G`) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.some(({rated}) => rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +76,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) throw `Inputted array should have at least one element`
+  // imdbID
+
+  return movies.find(({imdbID}) => imdbID === id) || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +105,19 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+ function filterByGenre(movies,g) {
+    // genre: "Animation, Adventure, Comedy, Family, Fantasy"
+    // turn genre string into array, split using `,`. (deal with spacing)
+    // case insensitive -> .toLowerCase()
+    // no match -> return [] -> if no match .filter() array WILL be empty
+    if(!movies.length) throw `Inputted array should have at least one element`
+    
+  
+    return movies.filter(({genre}) => {
+      // console.log( genre.toLowerCase().replaceAll(` `, ``).split(`,`))
+     return genre.toLowerCase().replace(/[` `]/gi, ``).split(`,`).includes(g.toLowerCase())}
+  ) 
+  }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +143,17 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // released: "24 Jun 1994" -> array [2]/ [length-1] or slice: 8
+  // <= year
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.filter(({released}) =>{ 
+    // console.log(+released.split(` `)[released.split(` `).length-1])
+    return +released.split(` `)[released.split(` `).length-1] <= year})
+
+
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +169,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, mscore) {
+  //metascore: "94" -> urnary + -> minimum (at least) >=
+  
+  if(!movies.length) throw `Inputted array should have at least one element`
+  return movies.every(({metascore}) => +metascore >= mscore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +200,33 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // key = title, [title]
+  //value = rotten tomatoes -> .ratings array -> obj .source === `ROTTEN TOMATOES` -> .value KEY
+  /* 
+   ratings: [
+      {
+        source: "Internet Movie Database",
+        value: "7.7/10",
+      },
+      {
+        source: "Rotten Tomatoes",
+        value: "97%",
+      },
+      {
+        source: "Metacritic",
+        value: "84/100",
+      },
+    ],
+  */
+
+    if(!movies.length) throw `Inputted array should have at least one element`
+
+    return movies.map(({title, ratings}) => {
+      let rate = ratings.find((obj) => obj.source === `Rotten Tomatoes`)
+       return {[title]: rate.value }})
+
+}
 
 // Do not change anything below this line.
 module.exports = {
