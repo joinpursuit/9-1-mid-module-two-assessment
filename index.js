@@ -200,7 +200,7 @@ function getRottenTomatoesScoreByMovie(movies) {
   }
   return movies.map((movie) => {
     const rottenScore = movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")
-    return { [movie.title]: rottenScore.rating.value }
+    return { [movie.title]: rottenScore.value }
   })
 }
 
