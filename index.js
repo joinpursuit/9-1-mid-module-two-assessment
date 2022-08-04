@@ -167,7 +167,7 @@ function checkMinMetascores(movies, metascore) {
   if (!movies.length){
     throw "Error"
   }
-  return movies.every((movie) => movie.metascore === metascore)
+  return movies.every((movie) => movie.metascore >= metascore)
 }
 
 /**
