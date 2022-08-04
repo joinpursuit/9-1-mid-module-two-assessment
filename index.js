@@ -30,7 +30,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length){
+    throw console.error
+  // throws error if 'movies' array is empty  
+  }
+  return movies.map(movie => movie.title)
+  // returns all titles from array of movies
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +57,14 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if(!movies.length){
+    throw console.error
+  // throws error if 'movies' array is empty  
+  }
+  return movies.some(movie => movie.rated === rating)
+  // Returns whether or not movies have the rating of "G"
+}
 
 /**
  * findById()
@@ -68,7 +82,13 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length){
+    throw console.error
+  //throws error if 'movies' array is empty  
+  }
+  return movies.find((movie) => movie.imdbID === id) || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +112,17 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if(!movies.length){
+    throw console.error
+  //throws error if 'movies' array is empty 
+  }
+  let arr = []
+   arr = movies.filter((movie) => {
+    return  movie.genre.toLowerCase().includes(genre.toLowerCase())})
+   return arr
+   
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +148,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movies.filter((movie) => 
+    Number(movie.released.split(" ")[2]) <= year
+  )
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +171,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movies.every(movie =>  movie.metascore  >= metascore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +202,17 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movies.map((movie) => {
+    let val = movie.ratings.find((inner) => 
+       inner.source === "Rotten Tomatoes"
+    )
+    return {[movie.title]: val.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
