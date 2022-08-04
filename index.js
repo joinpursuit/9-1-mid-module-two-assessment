@@ -30,7 +30,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+ if (!movies.length){
+  throw "no movies!"
+ }
+let titles = movies.map((movie) => movie.title) 
+return titles
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +56,13 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating="G") {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let isRating = movies.some((movie) => movie.rated === rating)
+  return isRating
+}
 
 /**
  * findById()
@@ -65,10 +77,20 @@ function checkIfAnyMovieHasRating() {}
  * EXAMPLE:
  *  findById(movies, "tt1979376");
  *  //> {
-      // Toy Story 4
-    };
- */
-function findById() {}
+ // Toy Story 4
+};
+*/
+function findById(movies,id) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let idMatch = movies.find((movie) => {
+    if(movie.imdbID === id)
+    return movie.title
+  }  
+  ) 
+  return idMatch || null
+}
 
 /**
  * filterByGenre()
@@ -83,16 +105,24 @@ function findById() {}
  * EXAMPLE:
  *  filterByGenre(movies, "Mystery");
  *  //> [
-      {
-        // Coco
-      }
-    ]
- *
- * EXAMPLE:
- *  filterByGenre(movies, "Horror")
- *  //> []
- */
-function filterByGenre() {}
+ {
+   // Coco
+  }
+]
+*
+* EXAMPLE:
+*  filterByGenre(movies, "Horror")
+*  //> []
+*/
+function filterByGenre(movies,genre) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let movieGenre = movies.filter((movie) => movie.genre.includes(genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase()))
+  // console.log(genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase())
+  return movieGenre
+}
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -107,18 +137,25 @@ function filterByGenre() {}
  * EXAMPLE:
  *  getAllMoviesReleasedAtOrBeforeYear(movies, 2000);
  *  //> [
-      {
-        // The Lion King
-      },
-      {
-        // Fantasia
-      },
-      {
-        // James and the Giant Peach
-      }
-    ];
- */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+ {
+   // The Lion King
+  },
+  {
+    // Fantasia
+  },
+  {
+    // James and the Giant Peach
+  }
+];
+*/
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let movDate = movies.filter((movie) => movie.released.slice(-4) <= year)
+  return movDate
+}
+
 
 /**
  * checkMinMetascores()
@@ -134,7 +171,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let hasTheMin = movies.every((movie) => +(movie.metascore) >= metascore )
+  return hasTheMin
+}
+
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -148,20 +192,31 @@ function checkMinMetascores() {}
  * EXAMPLE:
  *  getRottenTomatoesScoreByMovie(movies);
  *  //> [
-      { "Toy Story 4": "97%" },
-      { "Inside Out": "98%" },
-      { Coco: "97%" },
-      { "Incredibles 2": "93%" },
-      { Moana: "95%" },
-      { "How to Train Your Dragon": "99%" },
-      { Paddington: "97%" },
-      { "The Lion King": "93%" },
-      { Fantasia: "95%" },
-      { "James and the Giant Peach": "91%" },
-    ];
- */
-function getRottenTomatoesScoreByMovie() {}
+ { "Toy Story 4": "97%" },
+ { "Inside Out": "98%" },
+ { Coco: "97%" },
+ { "Incredibles 2": "93%" },
+ { Moana: "95%" },
+ { "How to Train Your Dragon": "99%" },
+ { Paddington: "97%" },
+ { "The Lion King": "93%" },
+ { Fantasia: "95%" },
+ { "James and the Giant Peach": "91%" },
+];
+*/
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+let obj = movies.map((movie) => 
+  {if(movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")) console.log({value})
+  return obj
+}
+)
+  
+}
 
+console.log(getRottenTomatoesScoreByMovie(exampleMovies))
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
