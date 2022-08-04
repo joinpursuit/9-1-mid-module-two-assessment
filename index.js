@@ -143,10 +143,10 @@ function filterByGenre(movies, g) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-  // if(!movies.length){
-  //   throw `Error: No movies`
-  // }
-  // return movies.filter(({released}) => year <= Number(released.slice(7)))
+  if(!movies.length){
+    throw `Error: No movies`
+  }
+  return movies.filter(({released}) => Number(released.slice(7)) <= year)
 }
 
 /**
@@ -193,7 +193,7 @@ function checkMinMetascores(movies, score) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {}
 
 // Do not change anything below this line.
 module.exports = {
