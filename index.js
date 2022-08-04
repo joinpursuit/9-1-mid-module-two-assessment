@@ -151,7 +151,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw "Error: movies array is empty"
   }
   return movies.filter((movie)=>{
-    
+   return movie.released.substr(7)<= year
   })
 }
 
