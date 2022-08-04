@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  !movies.length ? _throw("No Movies Detected") : null
+  //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  return movies.map(movie => movie.title)
+  /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies and mapping through it using the newly created variable movie. From there I will map through and find the title. 
+  */
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,14 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  !movies.length ? _throw("No Movies Detected") : null
+   //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  return movies.some(movie => movie.rated === rating)
+   /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies using the some method I check through the newly created variable movie to see if the movie rated is equal to the default rating of G.
+  */
+}
 
 /**
  * findById()
@@ -68,7 +83,15 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  !movies.length ? _throw("No Movies Detected") : null
+   //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  let ID = movies.find(movie => movie.imdbID === id)
+  return (!ID) ? null : ID
+    /*
+  The instructions told me I need to return the ID null or an error. Since I already handled the error I created a varible that is equal to the param movies using the find method to see if imdbID is the same as ID if it wasn't I returned the desired response. 
+  */
+}
 
 /**
  * filterByGenre()
@@ -92,7 +115,14 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  !movies.length ? _throw("No Movies Detected") : null
+   //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  return movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
+    /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies and filtering through it using the newly created variable movie. I am using movie to check inside of the genre and being sure its case sensitive using toUp. I wasn't sure how to be inclusive without using includes and so I repeated the process. I'm a bit confused why it didn't allow me to create a variable since I know I would be repeating the process. Please see previous commit for example. 
+  */
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +148,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  !movies.length ? _throw("No Movies Detected") : null
+   //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  return movies.filter(movie => parseInt(movie.released.split(" ")[2]) <= year)
+    /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies and filtering through it using the newly created variable movie. I wanted to compare the year to the release but in the test its a string so I used ParseInt to make them numbers. I used split to account for the spaces and it needed to be two because you have to have an even split. 
+  */
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +171,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  !movies.length ? _throw("No Movies Detected") : null
+   //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+  return movies.every(movie => metascore <= movie.metascore)
+    /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies and mapping through it using every and the newly created variable movie. from there I just see if the param metascore is equal to less than which is a true or false question. 
+  */
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +204,17 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+ !movies.length ? _throw("No Movies Detected") : null
+  //Checking if the inputted movies array is empty. In that case will present an error message. Since it is a ternary operation it needs a true or false option so null is put in place.
+ return movies.map(movie => {
+ let scoreReceived = movie.ratings.find(score => score.source === 'Rotten Tomatoes')
+ return {[movie.title]: scoreReceived.value}
+   /*
+  Instructions told me to return so I went directly to that option. I'm pulling the Parameter movies and mapping through it using the newly created variable movie but since it wont allow me to create the assisting variable outside the function I checked back to my notes and saw Carlos taught me to do it inside. I created a variable named scoresReceived from there recalled movie searched through ratings to find (using find) the score which is why I named the proceeding variable as such. From there I checked if the source or said score is equal to rotten tom which was requested and if so made another return that matched the example given. 
+  */
+})
+}
 
 // Do not change anything below this line.
 module.exports = {
