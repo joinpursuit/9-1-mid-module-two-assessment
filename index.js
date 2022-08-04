@@ -160,7 +160,11 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  beforeYearMovies = movies.filter(movie => {
+    return movie.released
+  })
+}
 
 /**
  * checkMinMetascores()
@@ -176,7 +180,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  let isMoviesScoreOverGivenMeta
+  if (!movies.length){
+    throw 'movies object is empty'
+  }
+  isMoviesScoreOverGivenMeta = movies.every(movie => {
+    return Number(movie.metascore) > metascore
+  })
+  return isMoviesScoreOverGivenMeta
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
