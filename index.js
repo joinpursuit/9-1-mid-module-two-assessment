@@ -107,9 +107,9 @@ function findById(movies, id) {
  */
  function filterByGenre(movies,g) {
     // genre: "Animation, Adventure, Comedy, Family, Fantasy"
-    // turn genre string into array, split using `,`.
+    // turn genre string into array, split using `,`. (deal with spacing)
     // case insensitive -> .toLowerCase()
-    // no match -> return []
+    // no match -> return [] -> if no match .filter() array WILL be empty
     if(!movies.length) throw `Inputted array should have at least one element`
     
   
@@ -143,7 +143,17 @@ function findById(movies, id) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // released: "24 Jun 1994" -> array [2]/ [length-1] or slice: 8
+  // <= year
+  if(!movies.length) throw `Inputted array should have at least one element`
+
+  return movies.filter(({released}) =>{ 
+    // console.log(+released.split(` `)[released.split(` `).length-1])
+    return +released.split(` `)[released.split(` `).length-1] <= year})
+
+
+}
 
 /**
  * checkMinMetascores()
