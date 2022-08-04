@@ -163,7 +163,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies, metascore) {
+function checkMinMetascores(movies, metascore="60") {
   if (!movies.length){
     throw "Error"
   }
