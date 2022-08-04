@@ -572,15 +572,20 @@ filterByGenre(movies, "Mystery")
 function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
   if(!movies.length){
     throw "no movies"
-  } else{
-    //console.log (movies[0].released)
-    for(i=0;i<movies.length;i++){
-      rYear = movies[i].released.split(" ")
-      return (array = rYear.filter((yes)=>{ return Number(yes[2]) <= Number(year) }))
+  } 
+   
+   let  older = movies.filter((title)=>{
+    let movYear =  Number(title.released.slice(7,11))
+   
+    if (movYear <= year){
+      return movYear
     }
-    
-  }
+   })
+   return older
+  
+
 }
+
 getAllMoviesReleasedAtOrBeforeYear(movies, 2000)
 /**
  * checkMinMetascores()
