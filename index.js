@@ -81,17 +81,16 @@ function checkIfAnyMovieHasRating(movies,rating="G") {
 };
 */
 function findById(movies,id) {
-  // if (!movies.length){
-  //   throw "no movies!"
-  // }
-  // let idMatch = movies.find((movie) => {
-  //   if(movie.imdbID === id)
-  //   return movie.title
-  // }  
-  // ) 
-  // return idMatch.title || null
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let idMatch = movies.find((movie) => {
+    if(movie.imdbID === id)
+    return movie.title
+  }  
+  ) 
+  return idMatch || null
 }
-// console.log(findById(exampleMovies,"tt1109624"))
 
 /**
  * filterByGenre()
@@ -106,16 +105,24 @@ function findById(movies,id) {
  * EXAMPLE:
  *  filterByGenre(movies, "Mystery");
  *  //> [
-      {
-        // Coco
-      }
-    ]
- *
- * EXAMPLE:
- *  filterByGenre(movies, "Horror")
- *  //> []
- */
-function filterByGenre() {}
+ {
+   // Coco
+  }
+]
+*
+* EXAMPLE:
+*  filterByGenre(movies, "Horror")
+*  //> []
+*/
+function filterByGenre(movies,genre) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let movieGenre = movies.filter((movie) => movie.genre.includes(genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase()))
+  // console.log(genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase())
+  return movieGenre
+}
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -130,18 +137,26 @@ function filterByGenre() {}
  * EXAMPLE:
  *  getAllMoviesReleasedAtOrBeforeYear(movies, 2000);
  *  //> [
-      {
-        // The Lion King
-      },
-      {
-        // Fantasia
-      },
-      {
-        // James and the Giant Peach
-      }
-    ];
- */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+ {
+   // The Lion King
+  },
+  {
+    // Fantasia
+  },
+  {
+    // James and the Giant Peach
+  }
+];
+*/
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if (!movies.length){
+    throw "no movies!"
+  }
+  let movDate = movies.filter((movie) => movie.released.slice(-4) <= year)
+  return movDate
+}
+
+// console.log(getAllMoviesReleasedAtOrBeforeYear(exampleMovies,2000))
 
 /**
  * checkMinMetascores()
