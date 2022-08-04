@@ -148,7 +148,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw `Error: There are no movies.`;
   }
-  return movies.filter(({ released }) => Number(released.split(` `)[2]) <= year);
+  return movies.filter(
+    ({ released }) => Number(released.split(` `)[2]) <= year
+  );
 }
 
 /**
@@ -165,7 +167,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw `Error: There are no movies.`;
+  }
+  return movies.every((movie) => +movie.metascore >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
