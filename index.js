@@ -30,7 +30,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  //if the movies array is empty, return error
+if(!movies.length) throw "Error: Movies array is empty!"
+
+//access the movie names in the key of 'title'
+const movieNames = movies.map((movie) => movie.title)
+return movieNames
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +57,13 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+//Check if movie.rated compares to the param rating
+  const hasRating = movies.some((movie) => movie.rated === rating)
+  return hasRating
+}
 
 /**
  * findById()
@@ -68,7 +81,16 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  //access the imbd iD using the key, compare it to the param id
+  const findWithId = movies.find((movie) => movie.imdbID === id)
+
+  //if nothing matches, aka findWithId is empty, return null
+  if(!findWithId) return null
+  return findWithId
+}
 
 /**
  * filterByGenre()
@@ -92,7 +114,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  //inside the key genre, there is a string of words. convert them to lowercase, then search the string using .includes for the param genre which is made lowercase too
+  const matchesGenre = movies.filter((movie) => 
+    movie.genre.toLowerCase().includes(genre.toLowerCase())) 
+  
+  
+  return matchesGenre
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +149,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  //movie.released is a string. make it into an array using split, separating by the spaces between the words. then if the word(num) that exists at index two is equal/or less than to the param 'year', return the movie object
+  const atOrBeforeYear = movies.filter((movie) => {
+    let yearReleased= movie.released.split(" ")
+    if(yearReleased[2] <= year) return movie
+  })
+return atOrBeforeYear
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +174,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore = 60) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+  //takes the key metascore and compares it to the param
+  const hasMinMeta =movies.every((movie) => Number(movie.metascore) >= metascore)
+  return hasMinMeta
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +206,16 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) throw "Error: Movies array is empty!"
+
+//going into each movie object into the ratings object, search for "Rotten Tomatoes." once that is found return an object where the key is the title, and the value is the value found withe the find method.
+  const scorePlusTitle = movies.map((movie) => {
+    const findScore = movie.ratings.find((scor) => scor.source === "Rotten Tomatoes")
+    return { [movie.title] : findScore.value}
+  })
+  return scorePlusTitle
+}
 
 // Do not change anything below this line.
 module.exports = {
