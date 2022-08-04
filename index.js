@@ -33,7 +33,7 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   if(!movies.length){
     throw console.error
-  // throwing error if 'movies' array is empty  
+  // throws error if 'movies' array is empty  
   }
   return movies.map(movie => movie.title)
   // returns all titles from array of movies
@@ -57,7 +57,14 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if(!movies.length){
+    throw console.error
+  // throws error if 'movies' array is empty  
+  }
+  return movies.some(movie => movie.rated === rating)
+  // Returns whether or not movies have the rating of "G"
+}
 
 /**
  * findById()
@@ -75,7 +82,13 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length){
+    throw console.error
+  //throws error if 'movies' array is empty  
+  }
+  return movies.find(movie => movie.imdbID === id ? true : null)
+}
 
 /**
  * filterByGenre()
@@ -99,7 +112,15 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+//   if(!movies.length){
+//     throw console.error
+//   //throws error if 'movies' array is empty 
+//   }
+//   let arr = []
+//    arr = movies.filter((movie) =>{return movie.type.find(movieType) => movieType.type.name.toLowercase() === genre.toLowerCase()})
+//    return arr
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -141,7 +162,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(!movies.length){
+    throw console.error
+  }
+  return movies.every(movie => movie.metascore > 90 || movie.metascore > 60)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
