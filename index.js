@@ -115,7 +115,7 @@ function findById(movies, id) {
   
     return movies.filter(({genre}) => {
       // console.log( genre.toLowerCase().replaceAll(` `, ``).split(`,`))
-     return genre.toLowerCase().replaceAll(` `, ``).split(`,`).includes(g.toLowerCase())}
+     return genre.toLowerCase().replace(/[` `]/gi, ``).split(`,`).includes(g.toLowerCase())}
   ) 
   }
 
