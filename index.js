@@ -104,8 +104,8 @@ function findById(movies, id) {
 function filterByGenre(movies, givenGenre) {
   if (!movies.length) throw "The `movies` array cannot be empty.";
   return movies.filter((el) => {
-      const same = el.genre.find((e) => e === (givenGenre.charAt(0).toUpperCase() + givenGenre.substring(1).toLowerCase()));
-      return same;
+      return el.genre.includes(givenGenre.charAt(0).toUpperCase() + givenGenre.substring(1).toLowerCase());
+      
   });
 }
 
